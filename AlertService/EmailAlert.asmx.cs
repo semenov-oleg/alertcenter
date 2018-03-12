@@ -19,7 +19,7 @@ namespace AlertService
   {
 
     [WebMethod]
-    public string SendGmail(string authKey, string to, string subject, string body)
+    public string SendGmail(string authKey, string from, string password, string to, string subject, string body)
     {
       if (authKey != "tdYm7ESaXbvh8EjzvWo8")
       {
@@ -38,8 +38,8 @@ namespace AlertService
 
         SmtpServer.Port = 587;
 
-        mail.From = new MailAddress("SchneiderElectricDT@gmail.com");
-        SmtpServer.Credentials = new System.Net.NetworkCredential("SchneiderElectricDT@gmail.com", "szPAjeh4QZHAwddgRtCR");
+        mail.From = new MailAddress(from);
+        SmtpServer.Credentials = new System.Net.NetworkCredential(from, password);
         SmtpServer.EnableSsl = true;
 
         SmtpServer.Send(mail);
